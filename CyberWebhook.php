@@ -2,9 +2,10 @@
 
 /**
  * Send a curl post request after each afterSurveyComplete event
- *
- * @author Rad Cirskis <nad200@gmail.com>
- * @copyright 2023 Evently <https://www.prodata.nz>
+ * 
+ * @author Lukas Hejtmanek
+ * @original Rad Cirskis <nad200@gmail.com>
+ * @copyright 2024
  * @license GPL v3
  * @version 1.0.0
  *
@@ -18,12 +19,11 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  */
-class PortalHook extends PluginBase
+class CyberWebhook extends PluginBase
 {
-
     protected $storage = 'DbStorage';
     static protected $description = 'Webhook for Limesurvey: send a curl POST after every response submission.';
-    static protected $name = 'PortalHook';
+    static protected $name = 'CyberWebhook';
     protected $surveyId;
 
     public function init()
@@ -33,7 +33,6 @@ class PortalHook extends PluginBase
         $this->subscribe('beforeSurveySettings');
         $this->subscribe('newSurveySettings');
     }
-
 
     protected $settings = array(
         'bUse' => array(
@@ -48,9 +47,9 @@ class PortalHook extends PluginBase
         ),
         'sUrl' => array(
             'type' => 'string',
-            'default' => 'https://portal.pmscienceprizes.org.nz/survey/webhooks',
+            'default' => '',
             'label' => 'The default address to send the webhook to',
-            'help' => 'If you are using Portal, this should be https://portal.pmscienceprizes.org.nz/survey/webhooks'
+            'help' => 'This is the default address'
         ),
         'sAuthToken' => array(
             'type' => 'string',
